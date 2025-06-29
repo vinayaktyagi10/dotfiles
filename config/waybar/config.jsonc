@@ -1,0 +1,38 @@
+{
+    "include": "~/.config/waybar/modules.json",
+    "layer": "top",
+    "position": "top",
+    "height": 33,
+    "width": 0,
+    "margin": "5 25 0 25",
+    "spacing": 4,
+    "modules-left": [
+        "clock",
+        "hyprland/workspaces",
+        "custom/spotify"
+    ],
+    "modules-center": [
+        "hyprland/window"
+    ],
+    "modules-right": [
+        "tray",
+        "group/system",
+        "custom/lock",
+        "custom/power"
+    ],
+    "custom/lock": {
+        "tooltip": false,
+        "on-click": "swaylock --grace 0 --fade-in 0.2 -i /home/ricing/.config/rofi/images/d.png",
+        "format": ""
+    },
+    "custom/spotify": {
+        "format": "{}",
+        "exec": "~/.config/waybar/scripts/spotify.sh",
+        "interval": 3,
+        "on-click": "playerctl play-pause",
+        "on-click-right": "playerctl next",
+        "on-click-middle": "playerctl previous",
+        "return-type": "json",
+        "tooltip": false
+    }
+}

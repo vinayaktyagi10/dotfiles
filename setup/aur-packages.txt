@@ -1,0 +1,16 @@
+aseprite
+bibata-cursor-theme-bin
+checkupdates-with-aur
+github-desktop-bin
+hplip-plugin
+librewolf-bin
+libseat-git
+libseat-git-debug
+libspeechd-git
+neofetch
+paru-debug
+pipes.sh
+rofi-bluetooth-git
+speech-dispatcher-git
+xf86-video-vmware
+yay-debug

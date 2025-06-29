@@ -1,0 +1,162 @@
+/* Import dynamic colors from pywal */
+@import url("../../.cache/wal/colors-waybar.css");
+
+* {
+    font-family: "Rubik", "JetBrainsMono Nerd Font";
+    font-size: 10pt;
+    font-weight: 400;
+}
+
+window#waybar {
+    color: @foreground;
+    padding-left: 2px;
+    padding-right: 2px;
+    background-color: transparent;
+}
+
+#window {
+    padding-bottom: 1px;
+    color: @foreground;
+}
+
+#custom-clipboard {
+    padding-left: 13px;
+    padding-right: 14px;
+}
+
+#system {
+    background: @background;
+    border-radius: 7px;
+    border: 2px solid @color7;
+}
+
+#workspaces {
+    background: @background;
+    border: 2px solid @color7;
+    border-radius: 7px;
+    padding-bottom: 1px;
+    padding-left: 4px;
+    padding-right: 4px;
+}
+
+#workspaces button {
+    min-width: 14px;
+    padding: 0 7px;
+    color: @color7;
+    transition: color 0.3s ease;
+}
+
+#workspaces button.active {
+    color: @color2;
+}
+
+#workspaces button:hover {
+    color: @color6;
+    box-shadow: inherit;
+    text-shadow: inherit;
+    background: transparent;
+}
+
+#tray {
+    padding-top: 2px;
+    padding-right: 6px;
+}
+
+#tray > .passive {
+    color: @color8;
+}
+
+#tray > .needs-attention {
+    color: @color1;
+}
+
+#network {
+    padding-left: 10px;
+    font-size: 10pt;
+    padding-right: 22px;
+    color: @color6;
+}
+
+#bluetooth {
+    font-size: 10pt;
+    padding-right: 16px;
+    color: @color5;
+}
+
+#pulseaudio {
+    font-size: 10pt;
+    padding-right: 20px;
+    color: @color3;
+}
+
+#clock {
+    background: @background;
+    border: 2px solid @color7;
+    border-radius: 7px;
+    padding-bottom: 1px;
+    padding-right: 10px;
+    padding-left: 10px;
+    color: @foreground;
+}
+
+#custom-power {
+    background-color: @color1;
+    color: @background;
+    padding-right: 11px;
+    padding-left: 9px;
+    font-size: 10pt;
+    border: 2px solid @color8;
+    border-radius: 7px;
+}
+
+#custom-power:hover {
+    background-color: @color9;
+}
+
+#custom-lock {
+    background-color: @color2;
+    color: @background;
+    padding-right: 11px;
+    padding-left: 9px;
+    font-size: 10pt;
+    border: 2px solid @color8;
+    border-radius: 7px;
+}
+
+#custom-lock:hover {
+    background-color: @color10;
+}
+
+#battery {
+    padding-right: 12.5px;
+    font-size: 10pt;
+    color: @color2;
+}
+
+#battery.charging {
+    color: @color3;
+}
+
+#battery.critical:not(.charging) {
+    color: @color1;
+}
+
+#backlight {
+    padding-right: 12.5px;
+    font-size: 10pt;
+    color: @foreground;
+}
+
+#custom-spotify {
+    background: @background;
+    border: 2px solid @color7;
+    border-radius: 7px;
+    padding-bottom: 1px;
+    padding-right: 10px;
+    padding-left: 10px;
+    color: @color4;
+}
+
+#custom-spotify:hover {
+    color: @color12;
+}
