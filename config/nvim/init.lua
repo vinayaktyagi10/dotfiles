@@ -688,7 +688,7 @@ vim.opt.list = true -- Show some invisible characters (tabs...)
 vim.opt.listchars = { tab = "» ", trail = "·", nbsp = "␣" } -- Define which invisible characters to show
 -- CORRECTED: Remove the invalid 'foldclose' field
 vim.opt.fillchars = {
-	foldopen = "",
+	foldopen = " ",
 	fold = " ",
 	foldsep = " ",
 	diff = "╱",
