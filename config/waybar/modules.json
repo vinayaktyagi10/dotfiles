@@ -1,102 +1,95 @@
 {
-    "hyprland/window": {
-        "max-length": 64,
-        "format": "{}"
-    },
+  "hyprland/window": {
+    "max-length": 64,
+    "format": "{}"
+  },
 
-    "group/system": {
-        "orientation": "horizontal",
-        "modules": [ "network", "bluetooth", "pulseaudio", "battery", "backlight" ]
-    },
+  "group/system": {
+    "orientation": "horizontal",
+    "modules": ["network", "bluetooth", "pulseaudio", "battery", "backlight"]
+  },
 
-    "network": {
-        "format": "{icon}",
-        "format-icons": [
-            "󰤠", "󰤢", "󰤥", "󰤨" 
-        ],
-        "format-disconnected": "󰤭",
-        "on-click": "foot nmtui",
-        "tooltip-format": "{essid} ({signalStrength}%)",
-        "interface": "wlan0"
-    },
+  "network": {
+    "format": "{icon}",
+    "format-icons": ["󰤠", "󰤢", "󰤥", "󰤨"],
+    "format-disconnected": "󰤭",
+    "format-ethernet": "󰈀",
+    "on-click": "kitty nmtui",
+    "tooltip-format": "{essid} ({signalStrength}%)",
+    "tooltip-format-disconnected": "Disconnected",
+    "interface": "wlan0"
+  },
 
-    "bluetooth": {
-        "format": "{icon}",
-        "format-icons": [ "󰂲", "󰂯" ],
-        "format-connected": "󰂯",
-        "format-disconnected": "󰂲",
-        "format-disabled": "󰂲",
-        "tooltip-format": "Active",
-        "tooltip-format-disabled": "Inactive",
-        "tooltip-format-connected": "{device_alias} ({device_battery_percentage}%)",
-        "tooltip-format-enumerate-connected": "{device_alias} ({device_battery_percentage}%)",
-        "on-click": "rofi-bluetooth"
-    },
+  "bluetooth": {
+    "format": "{icon}",
+    "format-icons": ["󰂲", "󰂯"],
+    "format-connected": "󰂯",
+    "format-disconnected": "󰂲",
+    "format-disabled": "󰂲",
+    "tooltip-format": "Active",
+    "tooltip-format-disabled": "Inactive",
+    "tooltip-format-connected": "{device_alias} ({device_battery_percentage}%)",
+    "tooltip-format-enumerate-connected": "{device_alias} ({device_battery_percentage}%)",
+    "on-click": "rofi-bluetooth"
+  },
 
-    "pulseaudio": {
-        "format": "{icon}",
-        "format-muted": "󰖁",
-        "format-icons": {
-            "headphones": "󰋋",
-            "headset": "󰋋",
-            "headset-muted": "󰋋",
-            "default": [
-                "󰝟",
-                "󱄡",
-                "󰖀",
-                "󰕾"
-            ]
-        },
-        "on-click": "pavucontrol",
-        "tooltip-format": "Volume ({volume}%)"
+  "pulseaudio": {
+    "format": "{icon}",
+    "format-muted": "󰖁",
+    "format-icons": {
+      "headphones": "󰋋",
+      "headset": "󰋋",
+      "headset-muted": "󰋋",
+      "default": ["󰝟", "󱄡", "󰖀", "󰕾"]
     },
+    "on-click": "pavucontrol",
+    "tooltip-format": "Volume ({volume}%)"
+  },
 
-    "battery": {
-        "format": "{icon}",
-        "format-icons": [
-            "󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"
-        ],
-        "format-charging": "󰂄",
-        "format-full": "󱟢",
-        "format-warning": "󰂃",
-        "tooltip": true,
-        "tooltip-format": "Discharging ({capacity}%)",
-        "tooltip-format-charging": "Charging ({capacity}%)",
-        "tooltip-format-full": "Full ({capacity}%)"
-    },
+  "battery": {
+    "format": "{icon}",
+    "format-icons": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
+    "format-charging": "󰂄",
+    "format-full": "󱟢",
+    "format-warning": "󰂃",
+    "tooltip": true,
+    "tooltip-format": "Discharging ({capacity}%)",
+    "tooltip-format-charging": "Charging ({capacity}%)",
+    "tooltip-format-full": "Full ({capacity}%)"
+  },
 
-    "custom/clipboard": {
-        "format": "",
-        "on-click": "cliphist list | rofi -dmenu -p 'Clipboard history:' | cliphist decode | wl-copy",
-        "tooltip": true,
-        "tooltip-format": "Clipboard history"
-    },
+  "custom/clipboard": {
+    "format": "",
+    "on-click": "cliphist list | rofi -dmenu -p 'Clipboard history:' | cliphist decode | wl-copy",
+    "tooltip": true,
+    "tooltip-format": "Clipboard history"
+  },
 
-    "clock": {
-        "format": "{:%I:%M %p}",
-        "tooltip": true,
-        "tooltip-format": "{:%d %B, %Y on a %A}"
-    },
+  "clock": {
+    "format": "{:%I:%M %p}",
+    "tooltip": true,
+    "tooltip-format": "{:%d %B, %Y on a %A}"
+  },
 
-    "tray": {
-        "icon-size": 20,
-        "spacing": 12
-    },
+  "tray": {
+    "icon-size": 20,
+    "spacing": 12
+  },
 
-    "custom/power": {
-        "format": "󰐥",
-        "tooltip": true,
-        "tooltip-format": "Power menu",
-        "on-click": "~/.config/scripts/power-menu"
-    },
+  "custom/power": {
+    "format": "󰐥",
+    "tooltip": true,
+    "tooltip-format": "Power menu",
+    "on-click": "~/.config/scripts/power-menu"
+  },
 
-    "backlight": {
-        "format": "{icon}",
-        "format-icons": ["󰃞", "󰃝", "󰃟", "󰃠"],
-        "interval": 2,
-        "on-scroll-up": "brightnessctl s +5%",
-        "on-scroll-down": "brightnessctl s 5%-",
-        "tooltip": true,
-        "tooltip-format": "Current brightness: {percent}%"
-    }
+  "backlight": {
+    "format": "{icon}",
+    "format-icons": ["󰃞", "󰃝", "󰃟", "󰃠"],
+    "interval": 2,
+    "on-scroll-up": "brightnessctl s +5%",
+    "on-scroll-down": "brightnessctl s 5%-",
+    "tooltip": true,
+    "tooltip-format": "Current brightness: {percent}%"
+  }
 }
