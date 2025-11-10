@@ -27,6 +27,48 @@ require("lazy").setup({
 		{ import = "lazyvim.plugins.extras.lang.json" },
 		{ import = "lazyvim.plugins.extras.lang.markdown" },
 
+		-- Database support
+		{
+			"tpope/vim-dadbod",
+			dependencies = {
+				"kristijanhusak/vim-dadbod-ui",
+				"kristijanhusak/vim-dadbod-completion",
+			},
+			config = function()
+				-- Auto-completion for SQL
+				vim.api.nvim_create_autocmd("FileType", {
+					pattern = { "sql", "mysql", "plsql" },
+					callback = function()
+						require("cmp").setup.buffer({
+							sources = {
+								{ name = "vim-dadbod-completion" },
+								{ name = "buffer" },
+							},
+						})
+					end,
+				})
+
+				-- DBUI settings
+				vim.g.db_ui_use_nerd_fonts = 1
+				vim.g.db_ui_show_database_icon = 1
+				vim.g.db_ui_force_echo_notifications = 1
+				vim.g.db_ui_win_position = "left"
+				vim.g.db_ui_winwidth = 40
+
+				-- Save queries in a specific location
+				vim.g.db_ui_save_location = vim.fn.stdpath("data") .. "/db_ui_queries"
+
+				-- Execute query shortcuts
+				vim.g.db_ui_execute_on_save = 0
+			end,
+			keys = {
+				{ "<leader>du", "<cmd>DBUIToggle<cr>", desc = "Toggle DBUI" },
+				{ "<leader>df", "<cmd>DBUIFindBuffer<cr>", desc = "Find buffer in DBUI" },
+				{ "<leader>dr", "<cmd>DBUIRenameBuffer<cr>", desc = "Rename DBUI buffer" },
+				{ "<leader>dq", "<cmd>DBUILastQueryInfo<cr>", desc = "Last query info" },
+			},
+		},
+
 		-- Terminal
 		{
 			"akinsho/toggleterm.nvim",
