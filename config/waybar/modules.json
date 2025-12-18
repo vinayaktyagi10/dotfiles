@@ -45,8 +45,49 @@
             }
         },
     
-        // === CENTER MODULES ===
-        "clock": {
+            // === CENTER MODULES ===
+    
+                "mpris": {
+    
+                    "format": "{player_icon} {title}",
+    
+                    "format-paused": "{status_icon} <i>{title}</i>",
+    
+                    "player-icons": {
+    
+                        "default": "<span>󰎆</span>",
+    
+                        "spotify": "<span></span>",
+    
+                        "firefox": "<span>󰈹</span>"
+    
+                    },
+    
+                    "status-icons": {
+    
+                        "paused": " 󰏤 "
+    
+                    },
+    
+                    "on-click": "playerctl play-pause",
+    
+                    "on-click-right": "playerctl next",
+    
+                    "on-click-middle": "playerctl previous",
+    
+                    "max-length": 30,
+    
+                    "tooltip": true
+    
+                },
+    
+            
+    
+        
+    
+            "clock": {
+    
+        
             "format": "{:%I:%M %p}",
             "format-alt": "{:%A, %B %d, %Y}",
             "tooltip-format": "<tt><small>{calendar}</small></tt>",
@@ -91,6 +132,15 @@
             "scroll-step": 1,
             "on-click": "pavucontrol",
             "tooltip": false
+        },
+
+        "backlight": {
+            "device": "nvidia_wmi_ec_backlight",
+            "format": "{icon} {percent}%",
+            "format-icons": ["", "", "", "", "", "", "", "", ""],
+            "on-scroll-up": "brightnessctl set 1%+",
+            "on-scroll-down": "brightnessctl set 1%-",
+            "min-length": 6
         },
     
         "cava": {
@@ -171,27 +221,27 @@
             "interval": 5
         },
     // Group: Connectivity
+    "network#icon": {
+        "format-wifi": "󰖩",
+        "format-ethernet": "󰈀",
+        "format-disconnected": "󰖪",
+        "tooltip": false
+    },
+
     "network": {
-        "format": "{ifname}",
-        "format-wifi": " {signalStrength}%",
-        "format-ethernet": "",
-        "format-disconnected": "",
-        "tooltip-format": "{ifname} via {gwaddr} ",
-        "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
-        "tooltip-format-ethernet": "{ifname} ",
-        "tooltip-format-disconnected": "Disconnected",
-        "max-length": 50
+        "format-wifi": "",
+        "format-ethernet": "󰈀",
+        "format-disconnected": "󰖪",
+        "tooltip-format": "{essid} ({signalStrength}%)",
+        "on-click": "kitty --class floating_shell -e nmtui"
     },
     
     "bluetooth": {
-        "format": " {status}",
-        "format-connected": " {device_alias}",
-        "format-connected-battery": " {device_alias} {device_battery_percentage}%",
-        "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
-        "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
-        "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
-        "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t{device_battery_percentage}%",
-        "on-click": "rofi-bluetooth" 
+        "format": "",
+        "format-connected": "󰂱",
+        "format-disabled": "󰂲",
+        "tooltip-format": "{status}",
+        "on-click": "blueman-manager" 
     },
 
     // Power
@@ -209,22 +259,51 @@
             "notification": "<span foreground='red'><sup></sup></span>",
             "none": "",
             "dnd-notification": "<span foreground='red'><sup></sup></span>",
-            "dnd-none": "",
-            "inhibited-notification": "<span foreground='red'><sup></sup></span>",
-            "inhibited-none": "",
-            "dnd-inhibited-notification": "<span foreground='red'><sup></sup></span>",
-            "dnd-inhibited-none": ""
+            "dnd-none": ""
         },
         "return-type": "json",
         "exec-if": "which swaync-client",
         "exec": "swaync-client -swb",
-        "on-click": "swaync-client -t -sw",
-        "on-click-right": "swaync-client -d -sw",
+        "on-click": "swaync-client -t -sw || (swaync & sleep 0.5 && swaync-client -t -sw)",
         "escape": true
     },
     
-    "tray": {
-        "icon-size": 18,
-        "spacing": 10
+        "tray": {
+    
+            "icon-size": 18,
+    
+            "spacing": 10
+    
+        },
+    
+    
+    
+                "custom/weather": {
+    
+    
+    
+                    "format": "{}",
+    
+    
+    
+                    "tooltip": true,
+    
+    
+    
+                    "interval": 3600,
+    
+    
+    
+                    "exec": "curl -s 'wttr.in/Jaipur?format=1' | sed 's/+//g'",
+    
+    
+    
+                    "return-type": ""
+    
+    
+    
+                }
+    
     }
-}
+    
+    

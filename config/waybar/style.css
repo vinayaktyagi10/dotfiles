@@ -10,14 +10,12 @@
 window#waybar {
     background-color: transparent;
     color: @foreground;
-    transition-property: background-color;
-    transition-duration: .5s;
 }
 
 /* Tooltips */
 tooltip {
     background: @background;
-    border: 1px solid @color4;
+    border: 2px solid @color4;
     border-radius: 10px;
 }
 
@@ -25,143 +23,113 @@ tooltip label {
     color: @foreground;
 }
 
-/* --- Modules --- */
+/* --- Styled "Tab" Modules --- */
 
-/* Launcher */
+#custom-launcher,
+#workspaces,
+#window,
+#mpris,
+#clock,
+#custom-weather,
+#hardware,
+#cava,
+#system,
+#group-connectivity,
+#custom-notification,
+#custom-power {
+    background-color: @background;
+    border: 2px solid @color4;
+    border-radius: 15px 2px 15px 2px;
+    margin: 5px 8px;
+    padding: 2px 15px;
+}
+
+/* --- Specific Adjustments for Alignment --- */
+
 #custom-launcher {
     background-color: @color4;
     color: @background;
-    padding: 5px 15px;
-    border-radius: 20px;
-    margin-right: 10px;
-    font-size: 18px;
-    transition: all 0.3s ease;
+    border: none;
+    font-size: 16px;
+    padding: 2px 20px;
 }
 
-#custom-launcher:hover {
-    background-color: @color5;
-    padding-right: 25px; /* Expand effect */
-}
-
-/* Workspaces */
 #workspaces {
-    background-color: @background;
-    border-radius: 20px;
-    padding: 0px 5px;
-    margin-right: 10px;
-    border: 2px solid @color4;
+    padding: 0 8px;
 }
 
 #workspaces button {
-    padding: 5px 10px;
-    color: @color8;
-    background: transparent;
-    border-radius: 15px;
-    font-size: 16px;
-    transition: all 0.3s ease;
-}
-
-#workspaces button:hover {
-    color: @color4;
-    background: rgba(255, 255, 255, 0.1);
+    padding: 5px 12px;
+    color: alpha(@color4, 0.4); /* Brighter than grey, but subtle */
+    border-radius: 10px 0 10px 0;
+    margin: 3px 2px;
 }
 
 #workspaces button.active {
     color: @background;
     background-color: @color4;
-    min-width: 40px; /* Pill stretch */
-    box-shadow: 0 0 10px @color4; /* Glow effect */
 }
 
-#workspaces button.urgent {
-    color: @color1;
+#mpris {
+    color: @color5;
 }
 
-/* Window Title */
-#window {
-    background-color: @background;
-    color: @foreground;
-    padding: 5px 15px;
-    border-radius: 20px;
-    margin-right: 10px;
-    border: 2px solid @color4;
-}
-
-/* Clock */
 #clock {
     background-color: @color4;
     color: @background;
-    padding: 5px 20px;
-    border-radius: 20px;
-    font-size: 15px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border: none;
+    padding: 2px 25px;
 }
 
-/* Hardware Group */
-#hardware {
-    background-color: @background;
-    border-radius: 20px;
-    margin-left: 10px;
-    margin-right: 10px;
-    padding: 0 5px;
-    border: 2px solid @color4;
+#custom-weather {
+    color: @color3;
 }
 
-#cpu, #memory, #custom-gpu, #temperature, #disk {
-    padding: 5px 10px;
-    color: @foreground;
+#custom-power {
+    background-color: @color1;
+    color: @background;
+    border: none;
+    font-size: 16px;
+    padding: 2px 20px;
+}
+
+#custom-notification {
+    font-size: 16px;
+    padding: 2px 15px;
+}
+
+#custom-notification > label {
+    padding: 0;
+    margin: 0;
+}
+
+/* Inner Module Colors & Spacing */
+#cpu, #memory, #custom-gpu, #temperature, #disk,
+#network, #network-icon, #bluetooth,
+#pulseaudio, #backlight, #battery {
+    padding: 0 10px;
 }
 
 #cpu { color: @color2; }
 #memory { color: @color3; }
 #custom-gpu { color: @color5; }
 #temperature { color: @color1; }
-#temperature.critical { color: red; animation-name: blink; animation-duration: 0.5s; animation-timing-function: linear; animation-iteration-count: infinite; animation-direction: alternate; }
 #disk { color: @color6; }
 
-@keyframes blink {
-    to {
-        color: @background;
-        background-color: @color1;
-    }
-}
+#network, #network-icon { color: @color4; }
+#bluetooth { color: @color5; }
+#pulseaudio { color: @color2; }
+#backlight { color: @color6; }
+#battery { color: @color3; }
 
-/* Cava */
-#cava {
-    background-color: @background;
-    border-radius: 20px;
-    margin-left: 10px;
-    padding: 0 10px;
-    color: @color4;
-    border: 2px solid @color4;
-}
+#battery.charging, #battery.plugged { color: @color2; }
 
-/* Audio */
-#pulseaudio {
-    background-color: @color2;
-    color: @background;
-    padding: 5px 15px;
-    border-radius: 20px;
-    margin-left: 10px;
-}
-
-#battery {
-    background-color: @background;
-    color: @color3;
-    padding: 5px 15px;
-    border-radius: 20px;
-    margin-left: 10px;
-    border: 2px solid @color4;
-}
-
-#battery.charging, #battery.plugged {
-    color: @color2;
-    background-color: @background;
+#battery.warning {
+    color: @color3; /* Orange/Yellow */
 }
 
 #battery.critical:not(.charging) {
-    background-color: @color1;
-    color: @foreground;
+    color: @color1; /* Red */
     animation-name: blink;
     animation-duration: 0.5s;
     animation-timing-function: linear;
@@ -169,46 +137,22 @@ tooltip label {
     animation-direction: alternate;
 }
 
-/* Tray */
-#tray {
-    background-color: @background;
-    padding: 5px 15px;
-    border-radius: 20px;
-    margin-left: 10px;
-    border: 2px solid @color4;
+@keyframes blink {
+    to {
+        color: @background;
+    }
 }
 
-#tray > .passive {
-    -gtk-icon-effect: dim;
+/* Group content alignment */
+#hardware, #system, #group-connectivity {
+    padding: 0 10px;
 }
 
-#tray > .needs-attention {
-    -gtk-icon-effect: highlight;
-    background-color: @color1;
+/* Remove grey hover effect */
+#hardware:hover, #system:hover, #group-connectivity:hover {
+    background-color: alpha(@color4, 0.1); /* Subtle color4 tint instead of grey */
 }
 
-/* Power */
-#custom-power {
-    background-color: @color1;
-    color: @background;
-    padding: 5px 15px;
-    border-radius: 20px;
-    margin-left: 10px;
-    font-size: 16px;
-    transition: all 0.3s;
-}
-
-#custom-power:hover {
-    background-color: @color9;
-    box-shadow: 0 0 5px @color1;
-}
-
-#custom-notification {
-    background-color: @background;
-    color: @foreground;
-    padding: 5px 15px;
-    border-radius: 20px;
-    margin-left: 10px;
-    border: 2px solid @color4;
-    font-size: 16px;
-}
+/* Remove margin for first/last items at the bar edges */
+.modules-left #custom-launcher { margin-left: 0; }
+.modules-right #custom-power { margin-right: 0; }

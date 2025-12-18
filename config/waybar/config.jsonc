@@ -1,7 +1,7 @@
 {
     "layer": "top",
     "position": "top",
-    "height": 40,
+    "height": 52,
     "margin-top": 5,
     "margin-left": 10,
     "margin-right": 10,
@@ -14,15 +14,17 @@
     ],
     
     "modules-center": [
-        "clock"
+        "mpris",
+        "clock",
+        "custom/weather"
     ],
     
     "modules-right": [
         "cava",
         "group/hardware",
-        "pulseaudio",
-        "battery",
+        "group/system",
         "tray",
+        "group/connectivity",
         "custom/notification",
         "custom/power"
     ],
@@ -30,10 +32,37 @@
     // Group Definitions
     "group/hardware": {
         "orientation": "horizontal",
+        "drawer": {
+            "transition-duration": 500,
+            "transition-left-to-right": false
+        },
         "modules": [
-            "cpu",
+            "cpu", 
             "custom/gpu",
-            "memory"
+            "memory",
+            "temperature"
+        ]
+    },
+
+    "group/system": {
+        "orientation": "horizontal",
+        "modules": [
+            "pulseaudio",
+            "backlight",
+            "battery"
+        ]
+    },
+
+    "group/connectivity": {
+        "orientation": "horizontal",
+        "drawer": {
+            "transition-duration": 500,
+            "transition-left-to-right": false
+        },
+        "modules": [
+            "network#icon", // The anchor
+            "network",
+            "bluetooth"
         ]
     },
     

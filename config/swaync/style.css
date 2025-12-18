@@ -1,104 +1,80 @@
 @import "../../.cache/wal/colors-waybar.css";
 
+/* --- Control Center --- */
 .control-center {
-  background: @background;
-  border-radius: 12px;
+  background: alpha(@background, 0.9);
+  border-radius: 20px 5px 20px 5px; /* Leaf Look */
   border: 2px solid @color4;
-  box-shadow: 0 0 10px 0 rgba(0,0,0,0.5);
+  box-shadow: 0 0 15px 0 rgba(0,0,0,0.5);
   margin: 10px;
+  padding: 10px;
 }
 
-.notification-row {
-  outline: none;
-  margin: 0px;
-  padding: 0px;
-}
-
-.notification {
-  background: transparent;
-  padding: 0px;
-  margin: 0px;
-}
-
+/* --- Notifications --- */
 .notification-content {
   background: @background;
-  padding: 10px;
-  border-radius: 12px;
+  padding: 15px;
+  border-radius: 15px 2px 15px 2px; /* Leaf Look */
   border: 1px solid @color4;
   margin: 5px;
+  color: @foreground;
 }
 
 .notification-default-action {
-  margin: 0;
-  padding: 0;
-  border-radius: 12px;
+  border-radius: 15px 2px 15px 2px;
 }
 
 .close-button {
   background: @color1;
   color: @background;
-  text-shadow: none;
-  padding: 0;
   border-radius: 100%;
-  margin-top: 5px;
-  margin-right: 5px;
+  padding: 4px;
+  margin: 5px;
 }
 
-.close-button:hover {
-  box-shadow: none;
-  background: @color9;
-  transition: all .15s ease-in-out;
-  border: none;
-}
-
+/* --- Widgets --- */
 .widget-title {
-  color: @foreground;
-  background: @background;
+  color: @color4;
+  background: transparent;
   padding: 10px;
-  margin: 10px;
+  margin: 5px;
   font-size: 1.5rem;
-  border-radius: 12px;
 }
 
 .widget-title > button {
-  font-size: 1rem;
+  font-size: 0.9rem;
   color: @background;
-  text-shadow: none;
   background: @color4;
-  box-shadow: none;
-  border-radius: 12px;
-}
-
-.widget-title > button:hover {
-  background: @color5;
+  border-radius: 10px 2px 10px 2px;
+  padding: 5px 15px;
 }
 
 .widget-dnd {
-  background: @background;
+  background: alpha(@color4, 0.1);
   padding: 10px;
   margin: 10px;
-  border-radius: 12px;
-  font-size: 1.1rem;
+  border-radius: 10px 2px 10px 2px;
   color: @foreground;
-}
-
-.widget-dnd > switch {
-  border-radius: 12px;
-  background: @color2;
-}
-
-.widget-dnd > switch:checked {
-  background: @color1;
 }
 
 .widget-mpris {
     color: @foreground;
-    background: @background;
-    padding: 10px;
+    background: alpha(@color4, 0.1);
+    padding: 15px;
     margin: 10px;
-    border-radius: 12px;
+    border-radius: 15px 2px 15px 2px;
 }
 
-.widget-mpris > button {
-    border-radius: 12px;
+.widget-mpris-player {
+    padding: 5px;
+    margin: 5px;
+}
+
+.widget-mpris-title {
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.widget-mpris-subtitle {
+    font-size: 0.9rem;
 }
