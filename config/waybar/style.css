@@ -1,161 +1,214 @@
-/* Import dynamic colors from pywal */
 @import url("../../.cache/wal/colors-waybar.css");
 
 * {
-    font-family: "Rubik", "JetBrainsMono Nerd Font";
-    font-size: 10pt;
-    font-weight: 400;
+    font-family: "JetBrainsMono Nerd Font", "Rubik", sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    min-height: 0;
 }
 
 window#waybar {
-    color: @foreground;
-    padding-left: 2px;
-    padding-right: 2px;
     background-color: transparent;
+    color: @foreground;
+    transition-property: background-color;
+    transition-duration: .5s;
 }
 
-#window {
-    padding-bottom: 1px;
+/* Tooltips */
+tooltip {
+    background: @background;
+    border: 1px solid @color4;
+    border-radius: 10px;
+}
+
+tooltip label {
     color: @foreground;
 }
 
-#custom-clipboard {
-    padding-left: 13px;
-    padding-right: 14px;
+/* --- Modules --- */
+
+/* Launcher */
+#custom-launcher {
+    background-color: @color4;
+    color: @background;
+    padding: 5px 15px;
+    border-radius: 20px;
+    margin-right: 10px;
+    font-size: 18px;
+    transition: all 0.3s ease;
 }
 
-#system {
-    background: @background;
-    border-radius: 7px;
-    border: 2px solid @color7;
+#custom-launcher:hover {
+    background-color: @color5;
+    padding-right: 25px; /* Expand effect */
 }
 
+/* Workspaces */
 #workspaces {
-    background: @background;
-    border: 2px solid @color7;
-    border-radius: 7px;
-    padding-bottom: 1px;
-    padding-left: 4px;
-    padding-right: 4px;
+    background-color: @background;
+    border-radius: 20px;
+    padding: 0px 5px;
+    margin-right: 10px;
+    border: 2px solid @color4;
 }
 
 #workspaces button {
-    min-width: 14px;
-    padding: 0 7px;
-    color: @color7;
-}
-
-#workspaces button.active {
-    color: @color2;
+    padding: 5px 10px;
+    color: @color8;
+    background: transparent;
+    border-radius: 15px;
+    font-size: 16px;
+    transition: all 0.3s ease;
 }
 
 #workspaces button:hover {
-    color: @color6;
-    box-shadow: inherit;
-    text-shadow: inherit;
-    background: transparent;
+    color: @color4;
+    background: rgba(255, 255, 255, 0.1);
 }
 
-#tray {
-    padding-top: 2px;
-    padding-right: 6px;
+#workspaces button.active {
+    color: @background;
+    background-color: @color4;
+    min-width: 40px; /* Pill stretch */
+    box-shadow: 0 0 10px @color4; /* Glow effect */
 }
 
-#tray > .passive {
-    color: @color8;
-}
-
-#tray > .needs-attention {
+#workspaces button.urgent {
     color: @color1;
 }
 
-#network {
-    padding-left: 10px;
-    font-size: 10pt;
-    padding-right: 22px;
-    color: @color6;
+/* Window Title */
+#window {
+    background-color: @background;
+    color: @foreground;
+    padding: 5px 15px;
+    border-radius: 20px;
+    margin-right: 10px;
+    border: 2px solid @color4;
 }
 
-#bluetooth {
-    font-size: 10pt;
-    padding-right: 16px;
-    color: @color5;
-}
-
-#pulseaudio {
-    font-size: 10pt;
-    padding-right: 20px;
-    color: @color3;
-}
-
+/* Clock */
 #clock {
-    background: @background;
-    border: 2px solid @color7;
-    border-radius: 7px;
-    padding-bottom: 1px;
-    padding-right: 10px;
-    padding-left: 10px;
+    background-color: @color4;
+    color: @background;
+    padding: 5px 20px;
+    border-radius: 20px;
+    font-size: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Hardware Group */
+#hardware {
+    background-color: @background;
+    border-radius: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 0 5px;
+    border: 2px solid @color4;
+}
+
+#cpu, #memory, #custom-gpu, #temperature, #disk {
+    padding: 5px 10px;
     color: @foreground;
 }
 
+#cpu { color: @color2; }
+#memory { color: @color3; }
+#custom-gpu { color: @color5; }
+#temperature { color: @color1; }
+#temperature.critical { color: red; animation-name: blink; animation-duration: 0.5s; animation-timing-function: linear; animation-iteration-count: infinite; animation-direction: alternate; }
+#disk { color: @color6; }
+
+@keyframes blink {
+    to {
+        color: @background;
+        background-color: @color1;
+    }
+}
+
+/* Cava */
+#cava {
+    background-color: @background;
+    border-radius: 20px;
+    margin-left: 10px;
+    padding: 0 10px;
+    color: @color4;
+    border: 2px solid @color4;
+}
+
+/* Audio */
+#pulseaudio {
+    background-color: @color2;
+    color: @background;
+    padding: 5px 15px;
+    border-radius: 20px;
+    margin-left: 10px;
+}
+
+#battery {
+    background-color: @background;
+    color: @color3;
+    padding: 5px 15px;
+    border-radius: 20px;
+    margin-left: 10px;
+    border: 2px solid @color4;
+}
+
+#battery.charging, #battery.plugged {
+    color: @color2;
+    background-color: @background;
+}
+
+#battery.critical:not(.charging) {
+    background-color: @color1;
+    color: @foreground;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+/* Tray */
+#tray {
+    background-color: @background;
+    padding: 5px 15px;
+    border-radius: 20px;
+    margin-left: 10px;
+    border: 2px solid @color4;
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    background-color: @color1;
+}
+
+/* Power */
 #custom-power {
     background-color: @color1;
     color: @background;
-    padding-right: 11px;
-    padding-left: 9px;
-    font-size: 10pt;
-    border: 2px solid @color8;
-    border-radius: 7px;
+    padding: 5px 15px;
+    border-radius: 20px;
+    margin-left: 10px;
+    font-size: 16px;
+    transition: all 0.3s;
 }
 
 #custom-power:hover {
     background-color: @color9;
+    box-shadow: 0 0 5px @color1;
 }
 
-#custom-lock {
-    background-color: @color2;
-    color: @background;
-    padding-right: 11px;
-    padding-left: 9px;
-    font-size: 10pt;
-    border: 2px solid @color8;
-    border-radius: 7px;
-}
-
-#custom-lock:hover {
-    background-color: @color10;
-}
-
-#battery {
-    padding-right: 12.5px;
-    font-size: 10pt;
-    color: @color2;
-}
-
-#battery.charging {
-    color: @color3;
-}
-
-#battery.critical:not(.charging) {
-    color: @color1;
-}
-
-#backlight {
-    padding-right: 12.5px;
-    font-size: 10pt;
+#custom-notification {
+    background-color: @background;
     color: @foreground;
-}
-
-#custom-spotify {
-    background: @background;
-    border: 2px solid @color7;
-    border-radius: 7px;
-    padding-bottom: 1px;
-    padding-right: 10px;
-    padding-left: 10px;
-    color: @color4;
-}
-
-#custom-spotify:hover {
-    color: @color12;
+    padding: 5px 15px;
+    border-radius: 20px;
+    margin-left: 10px;
+    border: 2px solid @color4;
+    font-size: 16px;
 }

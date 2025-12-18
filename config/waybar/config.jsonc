@@ -1,21 +1,44 @@
 {
-  "include": "~/.config/waybar/modules.json",
-  "layer": "top",
-  "position": "top",
-  "height": 33,
-  "width": 0,
-  "margin": "5 25 0 25",
-  "spacing": 4,
-  "modules-left": [
-    "clock",
-    "hyprland/workspaces"
-  ],
-  "modules-center": [
-    "hyprland/window"
-  ],
-  "modules-right": [
-    "group/system",
-    "custom/lock",
-    "custom/power"
-  ]
+    "layer": "top",
+    "position": "top",
+    "height": 40,
+    "margin-top": 5,
+    "margin-left": 10,
+    "margin-right": 10,
+    "spacing": 0,
+    
+    "modules-left": [
+        "custom/launcher",
+        "hyprland/workspaces",
+        "hyprland/window"
+    ],
+    
+    "modules-center": [
+        "clock"
+    ],
+    
+    "modules-right": [
+        "cava",
+        "group/hardware",
+        "pulseaudio",
+        "battery",
+        "tray",
+        "custom/notification",
+        "custom/power"
+    ],
+
+    // Group Definitions
+    "group/hardware": {
+        "orientation": "horizontal",
+        "modules": [
+            "cpu",
+            "custom/gpu",
+            "memory"
+        ]
+    },
+    
+    // Load Modules
+    "include": [
+        "~/.config/waybar/modules.json"
+    ]
 }
