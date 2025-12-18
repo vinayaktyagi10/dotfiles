@@ -1,0 +1,26 @@
+* {
+    background:     #0D120FFF;
+    background-alt: #0D120FFF;
+    foreground:     #b2b9c7FF;
+    selected:       #7f5a44FF;
+    active:         #7f5a44FF;
+    urgent:         #774048FF;
+    border-color:   #7c818b80;
+    separatorcolor: #7c818b80;
+    bg-transparent: #0D120FE6;
+    background-color: transparent;
+    text-color:       @foreground;
+}
+
+window {
+    background-color: @bg-transparent;
+    border:           2px;
+    border-color:     @selected;
+    border-radius:    12px;
+    padding:          15px;
+}
+
+element selected.normal {
+    background-color: @selected;
+    text-color:       @background;
+}

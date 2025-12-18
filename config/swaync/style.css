@@ -1,0 +1,104 @@
+@import "../../.cache/wal/colors-waybar.css";
+
+.control-center {
+  background: @background;
+  border-radius: 12px;
+  border: 2px solid @color4;
+  box-shadow: 0 0 10px 0 rgba(0,0,0,0.5);
+  margin: 10px;
+}
+
+.notification-row {
+  outline: none;
+  margin: 0px;
+  padding: 0px;
+}
+
+.notification {
+  background: transparent;
+  padding: 0px;
+  margin: 0px;
+}
+
+.notification-content {
+  background: @background;
+  padding: 10px;
+  border-radius: 12px;
+  border: 1px solid @color4;
+  margin: 5px;
+}
+
+.notification-default-action {
+  margin: 0;
+  padding: 0;
+  border-radius: 12px;
+}
+
+.close-button {
+  background: @color1;
+  color: @background;
+  text-shadow: none;
+  padding: 0;
+  border-radius: 100%;
+  margin-top: 5px;
+  margin-right: 5px;
+}
+
+.close-button:hover {
+  box-shadow: none;
+  background: @color9;
+  transition: all .15s ease-in-out;
+  border: none;
+}
+
+.widget-title {
+  color: @foreground;
+  background: @background;
+  padding: 10px;
+  margin: 10px;
+  font-size: 1.5rem;
+  border-radius: 12px;
+}
+
+.widget-title > button {
+  font-size: 1rem;
+  color: @background;
+  text-shadow: none;
+  background: @color4;
+  box-shadow: none;
+  border-radius: 12px;
+}
+
+.widget-title > button:hover {
+  background: @color5;
+}
+
+.widget-dnd {
+  background: @background;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  color: @foreground;
+}
+
+.widget-dnd > switch {
+  border-radius: 12px;
+  background: @color2;
+}
+
+.widget-dnd > switch:checked {
+  background: @color1;
+}
+
+.widget-mpris {
+    color: @foreground;
+    background: @background;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 12px;
+}
+
+.widget-mpris > button {
+    border-radius: 12px;
+}
