@@ -43,7 +43,6 @@ window#waybar {
     min-width: 14px;
     padding: 0 7px;
     color: @color7;
-    transition: color 0.3s ease;
 }
 
 #workspaces button.active {
