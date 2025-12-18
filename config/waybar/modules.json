@@ -26,7 +26,8 @@
     "on-click": "kitty nmtui",
     "tooltip-format": "{essid} ({signalStrength}%)",
     "tooltip-format-disconnected": "Disconnected",
-    "interface": "wlan0"
+    "interface": "wlan0",
+    "interval": 5
   },
   "bluetooth": {
     "format": "{icon}",
@@ -41,7 +42,8 @@
     "tooltip-format-disabled": "Inactive",
     "tooltip-format-connected": "{device_alias} ({device_battery_percentage}%)",
     "tooltip-format-enumerate-connected": "{device_alias} ({device_battery_percentage}%)",
-    "on-click": "rofi-bluetooth"
+    "on-click": "rofi-bluetooth",
+    "interval": 5
   },
   "pulseaudio": {
     "format": "{icon}",
@@ -58,7 +60,8 @@
       ]
     },
     "on-click": "pavucontrol",
-    "tooltip-format": "Volume ({volume}%)"
+    "tooltip-format": "Volume ({volume}%)",
+    "interval": 5
   },
   "battery": {
     "format": "{icon}",
@@ -81,7 +84,8 @@
     "tooltip": true,
     "tooltip-format": "Discharging ({capacity}%)",
     "tooltip-format-charging": "Charging ({capacity}%)",
-    "tooltip-format-full": "Full ({capacity}%)"
+    "tooltip-format-full": "Full ({capacity}%)",
+    "interval": 10
   },
   "custom/clipboard": {
     "format": "",
