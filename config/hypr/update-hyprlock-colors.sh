@@ -1,7 +1,59 @@
+#!/bin/bash
+
+# Hyprlock Pywal Color Integration Script
+# Updates hyprlock colors dynamically based on pywal theme
+# Save as: ~/.config/hypr/update-hyprlock-colors.sh
+
+# Source pywal colors
+if [ ! -f ~/.cache/wal/colors.sh ]; then
+  echo "Error: Pywal colors not found. Run 'wal -i <wallpaper>' first."
+  exit 1
+fi
+
+source ~/.cache/wal/colors.sh
+
+# Convert hex to rgba with alpha
+hex_to_rgba() {
+  local hex=$1
+  local alpha=${2:-1.0}
+
+  # Remove # if present
+  hex=${hex#\#}
+
+  # Convert to RGB
+  r=$((16#${hex:0:2}))
+  g=$((16#${hex:2:2}))
+  b=$((16#${hex:4:2}))
+
+  echo "rgba($r,$g,$b,$alpha)"
+}
+
+# Get colors with proper alpha values
+bg_color=$(hex_to_rgba "$color0" 0.75)
+accent_color=$(hex_to_rgba "$color2" 0.2)
+text_color=$(hex_to_rgba "$foreground" 0.95)
+success_color=$(hex_to_rgba "$color2" 1.0)
+error_color=$(hex_to_rgba "$color1" 1.0)
+border_color=$(hex_to_rgba "$color7" 0.15)
+
+# Extract RGB values for simple color fields
+accent_rgb="${color2#\#}"
+success_rgb="${color2#\#}"
+error_rgb="${color1#\#}"
+text_rgb="${foreground#\#}"
+
+echo "Updating hyprlock colors..."
+echo "  Background: $bg_color"
+echo "  Accent: $accent_color"
+echo "  Success: $success_rgb"
+echo "  Error: $error_rgb"
+
+# Create the config with dynamic colors
+cat >~/.config/hypr/hyprlock.conf <<EOF
 # ══════════════════════════════════════════════════════════════
 # 🌈 Hyprlock Configuration - Pywal Dynamic Theme
 # Auto-generated from pywal colors
-# Generated: Fri Dec 12 10:39:19 PM IST 2025
+# Generated: $(date)
 # ══════════════════════════════════════════════════════════════
 
 # ─── General Settings ─────────────────────────────────────────
@@ -41,18 +93,18 @@ input-field {
     dots_center = true
     dots_rounding = -1
     
-    outer_color = rgba(227,224,224,0.15)
-    inner_color = rgba(7,8,10,0.75)
-    font_color = rgb(e3e0e0)
+    outer_color = $border_color
+    inner_color = $bg_color
+    font_color = rgb($text_rgb)
     
     fade_on_empty = true
     fade_timeout = 1000
     placeholder_text = <span foreground="##cccccc"><i>  Enter Password...</i></span>
     hide_input = false
     
-    check_color = rgb(465682)
-    fail_color = rgb(405177)
-    fail_text = <span foreground="##405177"><b>✗ Incorrect</b></span> <span foreground="##888888">($ATTEMPTS)</span>
+    check_color = rgb($success_rgb)
+    fail_color = rgb($error_rgb)
+    fail_text = <span foreground="##$error_rgb"><b>✗ Incorrect</b></span> <span foreground="##888888">(\$ATTEMPTS)</span>
     fail_timeout = 2000
     
     position = 0, -140
@@ -68,8 +120,8 @@ input-field {
 # ─── Time Display ─────────────────────────────────────────────
 label {
     monitor =
-    text = cmd[update:1000] echo "<b>$(date +"%-I:%M")</b>"
-    color = rgba(227,224,224,0.95)
+    text = cmd[update:1000] echo "<b>\$(date +"%-I:%M")</b>"
+    color = $text_color
     font_size = 120
     font_family = JetBrains Mono Nerd Font
     position = 0, 260
@@ -85,7 +137,7 @@ label {
 # ─── AM/PM Indicator ──────────────────────────────────────────
 label {
     monitor =
-    text = cmd[update:1000] echo "$(date +"%p")"
+    text = cmd[update:1000] echo "\$(date +"%p")"
     color = rgba(200,200,200,0.8)
     font_size = 32
     font_family = JetBrains Mono Nerd Font
@@ -101,7 +153,7 @@ label {
 # ─── Date Display ─────────────────────────────────────────────
 label {
     monitor =
-    text = cmd[update:60000] echo "$(date +'%A, %B %-d, %Y')"
+    text = cmd[update:60000] echo "\$(date +'%A, %B %-d, %Y')"
     color = rgba(200,200,200,0.85)
     font_size = 24
     font_family = Rubik
@@ -117,8 +169,8 @@ label {
 # ─── User Greeting ────────────────────────────────────────────
 label {
     monitor =
-    text = cmd[update:300000] echo "👋 <i>Welcome back,</i> <b>$USER</b>"
-    color = rgba(227,224,224,0.95)
+    text = cmd[update:300000] echo "👋 <i>Welcome back,</i> <b>\$USER</b>"
+    color = $text_color
     font_size = 22
     font_family = Rubik
     position = 0, -260
@@ -135,21 +187,21 @@ label {
     monitor =
     text = cmd[update:2000] bash -c '
         if playerctl status 2>/dev/null | grep -qE "Playing|Paused"; then
-            status=$(playerctl status 2>/dev/null)
-            artist=$(playerctl metadata artist 2>/dev/null)
-            title=$(playerctl metadata title 2>/dev/null)
+            status=\$(playerctl status 2>/dev/null)
+            artist=\$(playerctl metadata artist 2>/dev/null)
+            title=\$(playerctl metadata title 2>/dev/null)
             
-            if [ "$status" = "Playing" ]; then
+            if [ "\$status" = "Playing" ]; then
                 icon="󰝚"
             else
                 icon="󰏤"
             fi
             
-            if [ ${#artist} -gt 20 ]; then artist="${artist:0:17}..."; fi
-            if [ ${#title} -gt 30 ]; then title="${title:0:27}..."; fi
+            if [ \${#artist} -gt 20 ]; then artist="\${artist:0:17}..."; fi
+            if [ \${#title} -gt 30 ]; then title="\${title:0:27}..."; fi
             
-            if [ -n "$artist" ] && [ -n "$title" ]; then
-                echo "<span foreground=\"##465682\">$icon</span>  <b>$artist</b>  <span foreground=\"##888888\">·</span>  $title"
+            if [ -n "\$artist" ] && [ -n "\$title" ]; then
+                echo "<span foreground=\"##$accent_rgb\">\$icon</span>  <b>\$artist</b>  <span foreground=\"##888888\">·</span>  \$title"
             fi
         fi
     '
@@ -169,24 +221,24 @@ label {
 label {
     monitor =
     text = cmd[update:5000] bash -c '
-        capacity=$(cat /sys/class/power_supply/BAT*/capacity 2>/dev/null)
-        status=$(cat /sys/class/power_supply/BAT*/status 2>/dev/null)
+        capacity=\$(cat /sys/class/power_supply/BAT*/capacity 2>/dev/null)
+        status=\$(cat /sys/class/power_supply/BAT*/status 2>/dev/null)
         
-        if [ -n "$capacity" ]; then
-            if [ "$status" = "Charging" ]; then
+        if [ -n "\$capacity" ]; then
+            if [ "\$status" = "Charging" ]; then
                 icon="󰂄"
-                color="##465682"
-            elif [ "$capacity" -le 20 ]; then
+                color="##$success_rgb"
+            elif [ "\$capacity" -le 20 ]; then
                 icon="󰂎"
-                color="##405177"
-            elif [ "$capacity" -le 50 ]; then
+                color="##$error_rgb"
+            elif [ "\$capacity" -le 50 ]; then
                 icon="󰁾"
                 color="##f1fa8c"
             else
                 icon="󰁹"
-                color="##465682"
+                color="##$success_rgb"
             fi
-            echo "<span foreground=\"$color\">$icon</span>  $capacity%"
+            echo "<span foreground=\"\$color\">\$icon</span>  \$capacity%"
         else
             echo ""
         fi
@@ -208,14 +260,14 @@ label {
     monitor =
     text = cmd[update:5000] bash -c '
         if ping -c 1 8.8.8.8 &>/dev/null; then
-            ssid=$(nmcli -t -f active,ssid dev wifi | grep "^yes" | cut -d: -f2)
-            if [ -n "$ssid" ]; then
-                echo "<span foreground=\"##465682\">󰖨</span>  $ssid"
+            ssid=\$(nmcli -t -f active,ssid dev wifi | grep "^yes" | cut -d: -f2)
+            if [ -n "\$ssid" ]; then
+                echo "<span foreground=\"##$success_rgb\">󰖨</span>  \$ssid"
             else
-                echo "<span foreground=\"##465682\">󰈀</span>  Connected"
+                echo "<span foreground=\"##$success_rgb\">󰈀</span>  Connected"
             fi
         else
-            echo "<span foreground=\"##405177\">󰖪</span>  Offline"
+            echo "<span foreground=\"##$error_rgb\">󰖪</span>  Offline"
         fi
     '
     color = rgba(200,200,200,0.85)
@@ -234,8 +286,8 @@ label {
 label {
     monitor =
     text = cmd[update:60000] bash -c '
-        uptime=$(uptime -p | sed "s/up //;s/ hours/h/;s/ hour/h/;s/ minutes/m/;s/ minute/m/")
-        echo "<span foreground=\"##465682\">󰔟</span>  $uptime"
+        uptime=\$(uptime -p | sed "s/up //;s/ hours/h/;s/ hour/h/;s/ minutes/m/;s/ minute/m/")
+        echo "<span foreground=\"##$accent_rgb\">󰔟</span>  \$uptime"
     '
     color = rgba(150,150,150,0.75)
     font_size = 14
@@ -253,8 +305,8 @@ label {
 label {
     monitor =
     text = cmd[update:1000] bash -c '
-        layout=$(hyprctl devices -j | jq -r ".keyboards[0].active_keymap" 2>/dev/null | head -c 2 | tr "[:lower:]" "[:upper:]")
-        [ -n "$layout" ] && echo "󰌌  $layout" || echo ""
+        layout=\$(hyprctl devices -j | jq -r ".keyboards[0].active_keymap" 2>/dev/null | head -c 2 | tr "[:lower:]" "[:upper:]")
+        [ -n "\$layout" ] && echo "󰌌  \$layout" || echo ""
     '
     color = rgba(150,150,150,0.7)
     font_size = 14
@@ -267,3 +319,7 @@ label {
     shadow_size = 4
     shadow_color = rgba(0,0,0,0.4)
 }
+EOF
+
+echo "✓ Hyprlock config updated with pywal colors!"
+echo "  Lock screen with: hyprlock (or Super+L)"
