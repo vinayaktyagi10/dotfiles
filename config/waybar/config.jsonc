@@ -15,6 +15,7 @@
     
     "modules-center": [
         "mpris",
+        "custom/task",
         "clock",
         "custom/weather"
     ],

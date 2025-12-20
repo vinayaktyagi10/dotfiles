@@ -279,30 +279,20 @@
     
     
                 "custom/weather": {
-    
-    
-    
                     "format": "{}",
-    
-    
-    
                     "tooltip": true,
-    
-    
-    
                     "interval": 3600,
-    
-    
-    
                     "exec": "curl -s 'wttr.in/Jaipur?format=1' | sed 's/+//g'",
-    
-    
-    
                     "return-type": ""
-    
-    
-    
-                }
+                },
+
+            "custom/task": {
+                "format": "{}",
+                "interval": 30,
+                "exec": "~/.config/waybar/scripts/taskbar.sh",
+                "return-type": "json",
+                "on-click": "kitty --class floating_shell -e taskwarrior-tui"
+            }
     
     }
     
