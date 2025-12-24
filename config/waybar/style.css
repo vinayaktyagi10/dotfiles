@@ -34,7 +34,9 @@ tooltip label {
 #hardware,
 #cava,
 #system,
-#group-connectivity,
+#connectivity,
+#tray,
+#custom-task,
 #custom-notification,
 #custom-power {
     background-color: @background;
@@ -144,13 +146,14 @@ tooltip label {
 }
 
 /* Group content alignment */
-#hardware, #system, #group-connectivity {
+#hardware, #system, #connectivity {
     padding: 0 10px;
 }
 
 /* Remove grey hover effect */
-#hardware:hover, #system:hover, #group-connectivity:hover {
-    background-color: alpha(@color4, 0.1); /* Subtle color4 tint instead of grey */
+#hardware:hover, #system:hover, #connectivity:hover {
+    background-color: @background;
+    border-color: @color2;
 }
 
 /* Remove margin for first/last items at the bar edges */

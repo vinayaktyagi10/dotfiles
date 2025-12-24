@@ -1,13 +1,13 @@
 * {
-    background:     #07080AFF;
-    background-alt: #07080AFF;
-    foreground:     #e3e0e0FF;
-    selected:       #465682FF;
-    active:         #465682FF;
-    urgent:         #405177FF;
-    border-color:   #9e9c9c80;
-    separatorcolor: #9e9c9c80;
-    bg-transparent: #07080AE6;
+    background:     #010305FF;
+    background-alt: #010305FF;
+    foreground:     #e0e8e9FF;
+    selected:       #4f7393FF;
+    active:         #4f7393FF;
+    urgent:         #405c77FF;
+    border-color:   #9ca2a380;
+    separatorcolor: #9ca2a380;
+    bg-transparent: #010305E6;
     background-color: transparent;
     text-color:       @foreground;
 }
