@@ -1,0 +1,5 @@
+#!/bin/bash
+# ShotClip: Select area -> Copy to clipboard
+# Requires: grim, slurp, wl-clipboard
+grim -g "$(slurp)" - | wl-copy
+notify-send "Screenshot" "Copied to clipboard"
