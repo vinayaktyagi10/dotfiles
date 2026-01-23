@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Define paths
-DOTFILES_DIR="$HOME/dotfiles/dotfiles"
+DOTFILES_DIR="$HOME/dotfiles"
 CONFIG_DIR="$DOTFILES_DIR/config"
 TARGET_DIR="$HOME/.config"
 
@@ -37,9 +37,9 @@ for config in "${CONFIGS[@]}"; do
 done
 
 # Link single files
-if [ -f "$CONFIG_DIR/.zshrc" ]; then
+if [ -f "$DOTFILES_DIR/.zshrc" ]; then
     echo "Linking: .zshrc"
-    ln -sf "$CONFIG_DIR/.zshrc" "$HOME/.zshrc"
+    ln -sf "$DOTFILES_DIR/.zshrc" "$HOME/.zshrc"
 fi
 
 echo "---------------------------------------"

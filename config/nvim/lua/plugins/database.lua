@@ -11,7 +11,7 @@ return {
     },
     init = function()
       vim.g.dbs = {
-        ["RDBMS Course DB"] = "postgresql://tyagi:1234@localhost:5432/rdbms_course",
+        ["RDBMS Course DB"] = "postgresql://vinayak:1234@localhost:5432/rdbms_course",
       }
     end,
   },

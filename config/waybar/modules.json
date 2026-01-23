@@ -2,7 +2,7 @@
     // === LEFT MODULES ===
     "custom/launcher": {
         "format": "",
-        "on-click": "rofi -show drun",
+        "on-click": "wofi --show drun",
         "tooltip": false
     },
     
@@ -135,7 +135,7 @@
         },
 
         "backlight": {
-            "device": "nvidia_wmi_ec_backlight",
+            "device": "nvidia_0",
             "format": "{icon} {percent}%",
             "format-icons": ["", "", "", "", "", "", "", "", ""],
             "on-scroll-up": "brightnessctl set 1%+",

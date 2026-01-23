@@ -14,6 +14,7 @@ eval "$(pyenv virtualenv-init -)"
 
 # Load Powerlevel10k instant prompt
 [[ -f ~/.cache/wal/colors.sh ]] && source ~/.cache/wal/colors.sh
+(cat ~/.cache/wal/sequences &)
 
 # Theme - using simple prompt with git info
 ZSH_THEME=""
@@ -78,11 +79,11 @@ alias kgn='kubectl get nodes'
 alias kdesc='kubectl describe'
 
 # System shortcuts
-alias ll='exa -lah'
-alias la='exa -la'
-alias l='exa -l'
-alias ls='exa'
-alias cat='bat'
+alias ll='ls -lah'
+alias la='ls -la'
+alias l='ls -l'
+# alias ls='exa'
+# alias cat='bat'
 alias grep='grep --color=auto'
 alias rm='rm -i'
 alias mv='mv -i'
@@ -113,7 +114,7 @@ alias tk='tmux kill-session -t'
 
 
 # DevLog venv activation
-alias devlog='/home/tyagi/projects/DevLog/.venv/bin/devlog'
+alias devlog='/home/vinayak/projects/DevLog/.venv/bin/devlog'
 
 # virtualenvwrapper
 alias virt-manager='PYENV_VERSION=system virt-manager'
@@ -210,20 +211,26 @@ ssh-add ~/.ssh/id_ed25519 2>/dev/null
 export PATH="$HOME/.local/bin:$PATH"
 
 # Added by LM Studio CLI (lms)
-export PATH="$PATH:/home/ricing/.lmstudio/bin"
+export PATH="$PATH:/home/vinayak/.lmstudio/bin"
 # End of LM Studio CLI section
 
 
 export PATH=$PATH:/home/ricing/.spicetify
 
 alias ls="ls --color=auto"
+
 eval "$(starship init zsh)"
+
 eval "$(zoxide init zsh)"
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 
-alias ls="eza --icons"
-alias ll="eza -lah --icons"
+
+# Replaced eza/bat aliases with standard counterparts
+
+# alias ls="eza --icons" 
+
+# alias ll="eza -lah --icons"
+
 alias grep="rg"
+
 export PATH="$HOME/.npm-global/bin:$PATH"

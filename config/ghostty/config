@@ -3,7 +3,7 @@ font-family = JetBrainsMono Nerd Font
 font-size = 12
 
 # Import Pywal colors
-config-file = /home/tyagi/.cache/wal/ghostty-config
+config-file = /home/vinayak/.cache/wal/ghostty-config
 
 # Transparency
 window-decoration = false

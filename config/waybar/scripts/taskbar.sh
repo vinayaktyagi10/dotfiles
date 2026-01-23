@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# Check dependencies
+if ! command -v task &> /dev/null || ! command -v jq &> /dev/null; then
+    echo "{\"text\": \" Deps\", \"tooltip\": \"Missing 'task' (taskwarrior) or 'jq'. Install them to use this module.\", \"class\": \"error\"}"
+    exit 0
+fi
+
 # Get pending task count
 COUNT=$(task status:pending count)
 

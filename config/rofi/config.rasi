@@ -1,58 +1,96 @@
 configuration {
     modi: "drun,run,filebrowser,window";
     show-icons: true;
-    display-drun: "  Apps";
-    display-run: "  Run";
-    display-filebrowser: "  Files";
-    display-window: "  Windows";
-    font: "JetBrainsMono Nerd Font 11";
+    display-drun: " Apps";
+    display-run: " Run";
+    display-filebrowser: " Files";
+    display-window: " Windows";
+    drun-display-format: "{name}";
+    window-format: "{w} · {c} · {t}";
+    font: "JetBrainsMono Nerd Font 10";
 }
 
-@import "~/.cache/wal/colors-rofi-dark.rasi"
+/* Import the Pywal color scheme */
+@theme "~/.cache/wal/colors-rofi-dark.rasi"
 
-* {
-    background-color: transparent;
-}
-
+/* Override elements for better readability and style */
 window {
-    transparency: "real";
-    background-color: rgba(0, 0, 0, 0.85);
-    border: 2px solid;
-    border-color: @selected;
-    border-radius: 12px;
     width: 600px;
-    padding: 20px;
+    border: 2px;
+    border-color: @selected-normal-background;
+    border-radius: 12px;
+    padding: 10px;
+    background-color: @background;
 }
 
 mainbox {
-    background-color: transparent;
-    children: [inputbar, listview];
-    spacing: 20px;
+    spacing: 10px;
+    padding: 5px;
+    children: [ "inputbar", "listview" ];
 }
 
 inputbar {
-    background-color: rgba(255, 255, 255, 0.05);
-    border-radius: 8px;
-    padding: 12px;
-    children: [prompt, entry];
     spacing: 10px;
+    padding: 5px;
+    border-radius: 8px;
+    background-color: @background;
+    text-color: @foreground;
+    children: [ "prompt", "entry" ];
+}
+
+prompt {
+    background-color: @selected-normal-background;
+    padding: 5px 10px;
+    border-radius: 6px;
+    text-color: @background;
+    font: "JetBrainsMono Nerd Font Bold 10";
+}
+
+entry {
+    padding: 5px;
+    text-color: @foreground;
+    placeholder: "Search...";
+    placeholder-color: @foreground; /* Fixed visibility */
 }
 
 listview {
+    columns: 1;
     lines: 8;
+    scrollbar: false;
+    spacing: 5px;
+    margin: 5px 0 0 0;
 }
 
 element {
-    padding: 10px;
-    border-radius: 6px;
-}
-
-element selected {
-    background-color: @selected;
-    text-color: @background;
+    padding: 8px 10px;
+    border-radius: 8px;
+    spacing: 10px;
+    text-color: @foreground; /* Force default text color */
 }
 
 element-icon {
-    size: 24px;
-    margin: 0 10px 0 0;
+    size: 64px; /* Larger icons for wallpapers */
+    padding: 0 10px 0 0;
+}
+
+element-text {
+    vertical-align: 0.5;
+    text-color: inherit;
+}
+
+/* Normal State */
+element normal.normal {
+    background-color: transparent;
+    text-color: @foreground;
+}
+element alternate.normal {
+    background-color: transparent;
+    text-color: @foreground;
+}
+
+/* Selected State - High Contrast (Inverted) */
+element selected.normal {
+    background-color: @foreground;
+    text-color: @background;
+    font: "JetBrainsMono Nerd Font Bold 10";
 }

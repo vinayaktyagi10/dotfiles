@@ -15,18 +15,15 @@
     
     "modules-center": [
         "mpris",
-        "custom/task",
         "clock",
         "custom/weather"
     ],
     
     "modules-right": [
-        "cava",
         "group/hardware",
         "group/system",
         "tray",
         "group/connectivity",
-        "custom/notification",
         "custom/power"
     ],
 

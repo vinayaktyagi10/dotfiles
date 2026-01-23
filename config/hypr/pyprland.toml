@@ -2,15 +2,28 @@
 plugins = [
   "scratchpads",
   "magnify",
-  "expose",
+  "shift_monitors",
 ]
 
 [scratchpads.term]
 animation = "fromTop"
-command = "ghostty --class=scratchpad"
-class = "scratchpad"
+command = "kitty --class kitty-dropterm"
+class = "kitty-dropterm"
 size = "75% 60%"
 max_size = "1920px 100%"
 margin = 50
+
+[scratchpads.volume]
+animation = "fromRight"
+command = "pavucontrol"
+class = "pavucontrol"
+size = "40% 90%"
 unfocus = "hide"
+lazy = true
+
+[scratchpads.music]
+animation = "fromBottom"
+command = "kitty --class music-player -e ncmpcpp"
+class = "music-player"
+size = "80% 80%"
 lazy = true
